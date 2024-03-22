@@ -13,7 +13,7 @@ Stepful - Product Engineer take-home
 
 # TODO LIST: 
 BE:
-- Create Data Model
+- Create Data Model DONE
 - Create timeslot endpoint (POST)
     - create url pattern
     - create viewset
@@ -34,10 +34,10 @@ BE:
     - create serializer 
 - All user's endpoint (for easy switching) (figure out best approach for this)
 
-- Docker setup 
-    - db (PostgreSQL)
-    - web (be)
-    - fe (?)
+- Docker setup DONE 
+    - db (PostgreSQL) DONE
+    - api (be) DONE 
+    - web (fe)  DONE
 
 - FE: 
     - All Coaches page
@@ -55,6 +55,8 @@ BE:
         - Sessions
         - Choose timeslots (maybe hide if on student account - NICE TO HAVE)
         - Change user
+
+- Script to create dummy users
         
 
 # Installation Instructions
@@ -63,10 +65,14 @@ BE:
 # Trade-offs
 - For simplicity sake, Coach model and Student model were condensed into a single model, with a field denoting what type of user they are.  In a more complicated application, where there might be more specific features depending on type of user, or if some more complex querying was going on (for efficiency sake), it would probably make more sense to have a specific model for each with a foreignKey to their User instance. 
 
+# General Notes
+- Things like max_length on CharFields is something that in a real world setting would be discussed with product, I'm just putting arbitrary values here to keep DB load in mind.
+
 # Assumptions
 - If a student and a coach have already had a past session, they will forever have the ability to view eachother's phone #.
 - Coaching sessions are auto-accepted once a student chooses an available timeslot.
 - Assume once a session is created (slot is booked), that it happens (at scheduled time).  
+- Assume entered phone numbers are valid (not going to add validation)
 
 # Data Models
 - User Model (can probably use django's built in User model)
