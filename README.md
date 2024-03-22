@@ -10,48 +10,6 @@ Stepful - Product Engineer take-home
 - Coach records satisfaction + notes
 - choose the current user (show whether student or coach in dropdown)
 
-# TODO LIST: 
-- FE: 
-    - All Coaches page DONE 
-        - CTA on timeslot to create session DONE
-    - Sessions page DONE
-        - Modal for Leaving feedback DONE 
-            - Satisfaction (state, will be a CTA if DNE)
-            - Notes (state, will be a CTA if DNE)
-        ~~- View Phone number modal~~ 
-    - Choose timeslots page
-        - https://react-day-time-picker.netlify.app/ (skipping for timesake)
-    - Navigation DONE 
-        - Coaches (maybe hide if on coach account - NICE TO HAVE) DONE
-        - Sessions DONE
-        - Choose timeslots (maybe hide if on student account - NICE TO HAVE) DONE
-        
-BE:
-- Create Data Model DONE
-- Create timeslot endpoint (POST) DONE
-    - create url pattern
-    - create viewset DONE 
-    - create serializers DONE
-- Create coaching session endpoints (GET (upcoming/previous separate)/POST(creation when booked)) DONE 
-    - create url pattern DONE 
-    - create viewset DONE 
-        - GET upcoming/previous as query param mapping to different serializers DONE
-        - POST (update timeslot to is_available = False upon creation) DONE 
-    - create serializer DONE
-- Create coach's endpoint (GET)
-    - create url pattern DONE
-    - create viewset DONE
-    - create serializer DONE
-- Create feedback endpoint (POST)
-    - create url pattern DONE
-    - create viewset DONE
-    - create serializer DONE
-
-- Docker setup DONE 
-    - db (PostgreSQL) DONE
-    - api (be) DONE 
-    - web (fe)  DONE
-
 # Installation Instructions
 - docker-compose up --build 
 - docker-compose exec be ./manage.py migrate
@@ -112,3 +70,45 @@ BE:
     - note (charfield)
     - rating (1-5)
     - session fk
+    
+# TODO LIST: 
+- FE: 
+    - All Coaches page DONE 
+        - CTA on timeslot to create session DONE
+    - Sessions page DONE
+        - Modal for Leaving feedback DONE 
+            - Satisfaction (state, will be a CTA if DNE)
+            - Notes (state, will be a CTA if DNE)
+        ~~- View Phone number modal~~ 
+    - Choose timeslots page
+        - https://react-day-time-picker.netlify.app/ (skipping for timesake)
+    - Navigation DONE 
+        - Coaches (maybe hide if on coach account - NICE TO HAVE) DONE
+        - Sessions DONE
+        - Choose timeslots (maybe hide if on student account - NICE TO HAVE) DONE
+        
+BE:
+- Create Data Model DONE
+- Create timeslot endpoint (POST) DONE
+    - create url pattern
+    - create viewset DONE 
+    - create serializers DONE
+- Create coaching session endpoints (GET (upcoming/previous separate)/POST(creation when booked)) DONE 
+    - create url pattern DONE 
+    - create viewset DONE 
+        - GET upcoming/previous as query param mapping to different serializers DONE
+        - POST (update timeslot to is_available = False upon creation) DONE 
+    - create serializer DONE
+- Create coach's endpoint (GET)
+    - create url pattern DONE
+    - create viewset DONE
+    - create serializer DONE
+- Create feedback endpoint (POST)
+    - create url pattern DONE
+    - create viewset DONE
+    - create serializer DONE
+
+- Docker setup DONE 
+    - db (PostgreSQL) DONE
+    - api (be) DONE 
+    - web (fe)  DONE
