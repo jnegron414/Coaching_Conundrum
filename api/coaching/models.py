@@ -19,6 +19,9 @@ class User(AbstractUser):
     user_type = models.CharField(max_length=1, choices=USER_TYPES, default=STUDENT)
     time_slots = models.ManyToManyField(TimeSlot, blank=True, related_name="coaching_timeslots")
 
+    def __str__(self):
+        return f"{self.first_name} {self.last_name}"
+
 
 class CoachingSession(models.Model):
     time_slot = models.ForeignKey(TimeSlot, on_delete=models.CASCADE)
@@ -26,7 +29,7 @@ class CoachingSession(models.Model):
     student = models.ForeignKey(User, on_delete=models.CASCADE, related_name="student_sessions")
 
     def __str__(self):
-        return f"Session with {self.coach} and {self.student} at {self.timeslot.time_slot}"
+        return f"Session with {self.coach} and {self.student} at {self.time_slot.time_slot}"
 
 
 class CoachingSessionFeedback(models.Model):

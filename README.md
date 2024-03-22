@@ -12,33 +12,6 @@ Stepful - Product Engineer take-home
 
 
 # TODO LIST: 
-BE:
-- Create Data Model DONE
-- Create timeslot endpoint (POST)
-    - create url pattern
-    - create viewset
-    - create serializers
-- Create coaching session endpoints (GET (upcoming/previous separate)/POST(creation when booked))
-    - create url pattern
-    - create viewset
-        - GET upcoming/previous as query param mapping to different serializers
-        - POST (update timeslot to is_available = False upon creation)
-    - create serializer
-- Create coach's endpoint (GET)
-    - create url pattern
-    - create viewset
-    - create serializer
-- Create feedback endpoint (POST)
-    - create url pattern
-    - create viewset
-    - create serializer 
-- All user's endpoint (for easy switching) (figure out best approach for this)
-
-- Docker setup DONE 
-    - db (PostgreSQL) DONE
-    - api (be) DONE 
-    - web (fe)  DONE
-
 - FE: 
     - All Coaches page
     - Sessions page 
@@ -58,12 +31,48 @@ BE:
 
 - Script to create dummy users
         
+BE:
+- Create Data Model DONE
+- Create timeslot endpoint (POST) DONE
+    - create url pattern
+    - create viewset DONE 
+    - create serializers DONE
+- Create coaching session endpoints (GET (upcoming/previous separate)/POST(creation when booked)) DONE 
+    - create url pattern DONE 
+    - create viewset DONE 
+        - GET upcoming/previous as query param mapping to different serializers DONE
+        - POST (update timeslot to is_available = False upon creation) DONE 
+    - create serializer DONE
+- Create coach's endpoint (GET)
+    - create url pattern DONE
+    - create viewset DONE
+    - create serializer DONE
+- Create feedback endpoint (POST)
+    - create url pattern DONE
+    - create viewset DONE
+    - create serializer DONE
+- All user's endpoint (for easy switching) (figure out best approach for this) REVISIT WHEN I TEST
+
+- Docker setup DONE 
+    - db (PostgreSQL) DONE
+    - api (be) DONE 
+    - web (fe)  DONE
 
 # Installation Instructions
-- TBD
+- docker-compose up --build 
+- docker-compose exec be ./manage.py migrate
+- [script_to_populate_db_with_dummy_data_here]
 
 # Trade-offs
 - For simplicity sake, Coach model and Student model were condensed into a single model, with a field denoting what type of user they are.  In a more complicated application, where there might be more specific features depending on type of user, or if some more complex querying was going on (for efficiency sake), it would probably make more sense to have a specific model for each with a foreignKey to their User instance. 
+
+# Improvements
+- Have the FE pass a query param to the sessions endpoint to have different responses for upcoming vs previous sessions, this way the two can be separated on the FE (could live on different tabs for instance)
+- Validation for POST requests (phone #s, time_slots, etc)
+- Parse note coach leaves for malicious code and remove it
+- Order timeslots by time in incrementing order, and display them by date 
+- Change endpoints to only support specific methods (Should not be able to make a GET request on /api/time_slots for ex)
+- add setup script to automate migration + db population + runserver (streamlines local development flow)
 
 # General Notes
 - Things like max_length on CharFields is something that in a real world setting would be discussed with product, I'm just putting arbitrary values here to keep DB load in mind.
