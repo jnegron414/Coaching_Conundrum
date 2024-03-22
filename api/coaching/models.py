@@ -33,6 +33,6 @@ class CoachingSession(models.Model):
 
 
 class CoachingSessionFeedback(models.Model):
-    rating = models.IntegerField(choices=list(zip(range(1, 5), range(1, 5))), unique=True)
+    rating = models.IntegerField(choices=list(zip(range(1, 5), range(1, 5))))
     note = models.CharField(max_length=500, blank=True)
     session = models.OneToOneField(CoachingSession, on_delete=models.CASCADE, related_name="session_feedback")

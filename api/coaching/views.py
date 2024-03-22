@@ -19,7 +19,6 @@ class TimeSlotViewSet(viewsets.ModelViewSet):
         time_slot_data = request.data
         time_slot, _ = TimeSlot.objects.get_or_create(**time_slot_data)
 
-        print(f"TIME SLOT {time_slot}")
         # Add the timeslot to the coaches slots
         request.user.time_slots.add(time_slot)
         return Response(TimeSlotSerializer(time_slot).data)

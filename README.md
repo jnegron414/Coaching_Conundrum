@@ -5,31 +5,26 @@ Stepful - Product Engineer take-home
 - Coach adds timeslots of availability
 - Coach views upcoming slots (phone number shown)
 - Coach views previous slots (notes and scores)
-- Student views all coaches
+- Student views all coaches 
 - Student can view upcoming slots (phone number shown)
 - Coach records satisfaction + notes
 - choose the current user (show whether student or coach in dropdown)
 
-
 # TODO LIST: 
 - FE: 
-    - All Coaches page
-    - Sessions page 
-        - Upcoming 
-        - Previous
+    - All Coaches page DONE 
+        - CTA on timeslot to create session DONE
+    - Sessions page DONE
+        - Modal for Leaving feedback DONE 
             - Satisfaction (state, will be a CTA if DNE)
             - Notes (state, will be a CTA if DNE)
-            - Other member
-        - View Phone number modal
+        ~~- View Phone number modal~~ 
     - Choose timeslots page
-    - Change current user modal 
-    - Navigation
-        - Coaches (maybe hide if on coach account - NICE TO HAVE)
-        - Sessions
-        - Choose timeslots (maybe hide if on student account - NICE TO HAVE)
-        - Change user
-
-- Script to create dummy users
+        - https://react-day-time-picker.netlify.app/ (skipping for timesake)
+    - Navigation DONE 
+        - Coaches (maybe hide if on coach account - NICE TO HAVE) DONE
+        - Sessions DONE
+        - Choose timeslots (maybe hide if on student account - NICE TO HAVE) DONE
         
 BE:
 - Create Data Model DONE
@@ -51,7 +46,6 @@ BE:
     - create url pattern DONE
     - create viewset DONE
     - create serializer DONE
-- All user's endpoint (for easy switching) (figure out best approach for this) REVISIT WHEN I TEST
 
 - Docker setup DONE 
     - db (PostgreSQL) DONE
@@ -61,7 +55,7 @@ BE:
 # Installation Instructions
 - docker-compose up --build 
 - docker-compose exec be ./manage.py migrate
-- [script_to_populate_db_with_dummy_data_here]
+- Replace USER_AUTH with "Basic [user:password]" but base 32 encoded for easy swtiching
 
 # Trade-offs
 - For simplicity sake, Coach model and Student model were condensed into a single model, with a field denoting what type of user they are.  In a more complicated application, where there might be more specific features depending on type of user, or if some more complex querying was going on (for efficiency sake), it would probably make more sense to have a specific model for each with a foreignKey to their User instance. 
@@ -74,9 +68,19 @@ BE:
 - Change endpoints to only support specific methods (Should not be able to make a GET request on /api/time_slots for ex)
 - add setup script to automate migration + db population + runserver (streamlines local development flow)
 - add end_time field on the time_slot model so ambiguous logic like -timedelta(hours=2) is much clearer
+- Ability to alter available timeslots (remove previous selected timeslots, change time)
+- Ability to reschedule a coaching session
+- Only return coaches with availability on the /coaches endpoint
+- Use reactstrap for layout
+- on sessions page, just show name for other party, and if you click on their name a phone number modal pops up 
+- add feedback_left_by field on the CoachingSessionFeedback model to denote what user left feedback (also validation so only the coach can leave feedback)
+- date_created field for sessions, feedback
+- dropdown for rating for feedback form modal
+
 
 # General Notes
 - Things like max_length on CharFields is something that in a real world setting would be discussed with product, I'm just putting arbitrary values here to keep DB load in mind.
+- Spent more time on the FE side of things because my React is very rusty (previous role was fully BE).  Would be able to get back up to speed relatively quickly, just went for functional requirements here FE wise.
 
 # Assumptions
 - If a student and a coach have already had a past session, they will forever have the ability to view eachother's phone #.

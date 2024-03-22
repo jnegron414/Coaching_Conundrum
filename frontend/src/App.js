@@ -1,25 +1,30 @@
 import logo from './logo.svg';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import React, { Component, Fragment } from "react";
+
+import NavBar from "./components/NavBar"
+import Coaches from "./components/Coaches";
+import CoachingSessions from "./components/CoachingSessions";
+import AvailabilityForm from "./components/AvailabilityForm";
+
+
+class App extends Component {
+  render() {
+    return (
+      <Fragment>
+        <Router>
+          <NavBar />
+          <Routes>
+            <Route path='/coaches' element={<Coaches />} />
+            <Route path='/coaching_sessions' element={<CoachingSessions />} />
+            <Route path='/update_availability' element={<AvailabilityForm />} />
+          </Routes>
+        </Router>
+    </Fragment>
+    );
+  }
 }
 
 export default App;

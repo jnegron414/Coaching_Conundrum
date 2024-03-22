@@ -62,7 +62,7 @@ class CoachingSessionSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = CoachingSession
-        fields = ('time_slot', 'coach', 'student', 'show_feedback', 'feedback')
+        fields = ('id', 'time_slot', 'coach', 'student', 'show_feedback', 'feedback')
 
     def get_show_feedback(self, obj):
         # If the session has already occurred (2 hours has passed since start time)
