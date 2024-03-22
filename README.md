@@ -73,6 +73,7 @@ BE:
 - Order timeslots by time in incrementing order, and display them by date 
 - Change endpoints to only support specific methods (Should not be able to make a GET request on /api/time_slots for ex)
 - add setup script to automate migration + db population + runserver (streamlines local development flow)
+- add end_time field on the time_slot model so ambiguous logic like -timedelta(hours=2) is much clearer
 
 # General Notes
 - Things like max_length on CharFields is something that in a real world setting would be discussed with product, I'm just putting arbitrary values here to keep DB load in mind.

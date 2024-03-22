@@ -35,11 +35,15 @@ class SessionBookedUserSerializer(UserSerializer):
 
 
 class CoachSerializer(UserSerializer):
-    time_slots = TimeSlotSerializer(many=True)
+    time_slots = serializers.SerializerMethodField()
 
     class Meta(UserSerializer.Meta):
         fields = UserSerializer.Meta.fields
         fields += ('id', 'time_slots',)
+
+    def get_time_slots(self, obj):
+        time_slots = obj.time_slots.filter(is_available=True, time_slot__gt=timezone.now())
+        return TimeSlotSerializer(time_slots, many=True).data
 
 
 class CoachingSessionFeedbackSerializer(serializers.ModelSerializer):
